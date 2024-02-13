@@ -1,0 +1,57 @@
+services:
+  # webblog:
+  #   container_name: webblog
+  #   image: webblog:1.0.0
+  #   build: ./ #if your Dockerfile is not at the same level change the path here (./frontend)
+  #   # restart: always #change if you don't want your container restarting
+  #   environment:
+  #     - NODE_ENV=production
+  #   ports:
+  #     - 3000:3000
+  webblog_dev:
+    container_name: webblog_dev
+    build:
+      context: ./ #if your Dockerfile is not at the same level change the path here (./frontend)
+      dockerfile: next.dockerfile
+      target: dev
+    restart: always
+    command: yarn dev
+    environment:
+      # - NODE_ENV=production # production mode
+      - NODE_ENV=development # dev mode
+      #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app # if use frontend folder (./frontend:/app)
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
+    # depends_on:
+    #   - goapp
+  # goapp:
+  #   container_name: goapp
+  #   image: goapp:1.0.0
+  #   build:
+  #     context: ./backend
+  #     dockerfile: go.dockerfile
+  #   environment:
+  #     DATABASE_URL: "postgres://postgres:postgres@db:5432/postgres?sslmode=disable"
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - db
+#   db:
+#     container_name: db
+#     image: postgres:13
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#       POSTGRES_DB: postgres
+#     ports:
+#       - 5432:5432
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+
+# volumes:
+#   pgdata: {}
