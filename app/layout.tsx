@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import client from "@/tina/__generated__/client"
 import { Poppins } from "next/font/google"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Riku",
@@ -29,7 +30,10 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="prose-xl mx-auto my-20 w-full max-w-4xl px-4 dark:prose-invert md:px-0">
             <Header />
-            <main>{children}</main>
+            <main>
+              {children}
+              <SpeedInsights />
+            </main>
             <Footer {...result} />
           </div>
         </ThemeProvider>
