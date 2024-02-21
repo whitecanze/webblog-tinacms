@@ -1,7 +1,14 @@
 "use client"
 
-import {TextBox, TweetEmbed, PullQuote, CaptionedImage, VideoPlayer} from "@/components/RichText"
+import {
+  TextBox,
+  TweetEmbed,
+  PullQuote,
+  CaptionedImage,
+  VideoPlayer,
+} from "@/components/RichText"
 import { PostQuery } from "@/tina/__generated__/types"
+import { useEffect } from "react"
 import { tinaField, useTina } from "tinacms/dist/react"
 import { TinaMarkdown } from "tinacms/dist/rich-text"
 
@@ -16,6 +23,10 @@ export const PostPageComponent = (props: {
 
   const title = data.post.title
   const content = data.post.body
+
+  useEffect(() => {
+    if (title) document.title = "WhiteCanZE - " + title
+  }, [title])
 
   return (
     <article>

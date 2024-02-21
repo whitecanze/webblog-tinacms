@@ -1,6 +1,13 @@
 import client from "@/tina/__generated__/client"
-import { notFound } from "next/navigation"
-import {PostPageComponent} from "@/components/app/posts/post-page"
+import { notFound, usePathname } from "next/navigation"
+import { PostPageComponent } from "@/components/app/posts/post-page"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "WhiteCanZE - Blog",
+  description: "My Blog List :)",
+}
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const result = await client.queries

@@ -7,8 +7,8 @@ import client from "@/tina/__generated__/client"
 import { Poppins } from "next/font/google"
 
 export const metadata: Metadata = {
-  title: "Riku",
-  description: "My Web Dev Blog :)",
+  title: "WhiteCanZE's Website",
+  description: "My Private Web :)",
 }
 
 const poppins = Poppins({
@@ -29,9 +29,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="prose-xl mx-auto my-20 w-full max-w-4xl px-4 dark:prose-invert md:px-0">
             <Header />
-            <main>
-              {children}
-            </main>
+            <main>{children}</main>
             <Footer {...result} />
           </div>
         </ThemeProvider>

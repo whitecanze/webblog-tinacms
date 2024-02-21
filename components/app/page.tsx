@@ -10,6 +10,8 @@ import {
   CaptionedImage,
   VideoPlayer,
 } from "@/components/RichText"
+import { useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 export const PageComponent = (props: {
   data: PageQuery
@@ -22,6 +24,15 @@ export const PageComponent = (props: {
 
   const title = data.page.title
   const content = data.page.body
+
+  const pathname = usePathname()
+  useEffect(() => {
+    if (pathname) {
+      const title = pathname?.split("/")[1]
+      document.title =
+        "WhiteCanZE - " + title[0].toUpperCase() + title.substring(1)
+    }
+  }, [pathname])
 
   return (
     <article>
